@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: d32005eea26903b45b3ad2dfa07f9ca6
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      74: -716827471853910039
+    second: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+  - first:
+      74: -393816925410695070
+    second: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+  - first:
+      74: 6957683987516554313
+    second: "\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+  - first:
+      74: -7662483115712361900
+    second: "\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.shintai
+    second: {fileID: 2100000, guid: d3fbbc089e7a3b34cb79454da5c6bde8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.shirome
+    second: {fileID: 2100000, guid: c2d3432b49db3c2408e0b8c84265fe4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 10.chuuashi
+    second: {fileID: 2100000, guid: 1afde5f2873048f4888147b82f888a23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 11.kouashi
+    second: {fileID: 2100000, guid: 005f997b565282448927be3d66615268, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2.hidarime
+    second: {fileID: 2100000, guid: 470575d21cd87ef4b91f61f8f349bd59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3.migime
+    second: {fileID: 2100000, guid: c0a801c85d1ac294cbb2db70aae1e28d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4.shita
+    second: {fileID: 2100000, guid: 26b125fbb9b3167479a11de78cb1313e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5.ueha
+    second: {fileID: 2100000, guid: b9afec44f6620b949a7cf7a8bfd61bd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 6.shimoha
+    second: {fileID: 2100000, guid: 97611527327b58a4196b0d61fbb73f00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 7.kaku
+    second: {fileID: 2100000, guid: 4cb7fe47985bd9442bd4581873aefaa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 8.kuchi
+    second: {fileID: 2100000, guid: c88c0e240890fb44a94f26f074b70b36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9.maeashi
+    second: {fileID: 2100000, guid: fb705590fb7e9574096d662c6a954bd1, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: "\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+      takeName: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+      internalID: 6957683987516554313
+      firstFrame: 0
+      lastFrame: 1015
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+      takeName: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+      internalID: -7662483115712361900
+      firstFrame: 0
+      lastFrame: 1015
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
