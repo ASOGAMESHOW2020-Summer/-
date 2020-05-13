@@ -4,11 +4,11 @@ ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -716827471853910039
-    second: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+      74: 6843107963848596127
+    second: "\u3053\u3068\u308D\u3053\u3068\u308D/Assets/Enemy/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
   - first:
-      74: -393816925410695070
-    second: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+      74: -100406683338301994
+    second: "\u3053\u3068\u308D\u3053\u3068\u308D/Assets/Enemy/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
   - first:
       74: 6957683987516554313
     second: "\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
@@ -105,7 +105,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: "\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
-      takeName: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
+      takeName: "\u3053\u3068\u308D\u3053\u3068\u308D/Assets/Enemy/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u58F1)_vmd"
       internalID: 6957683987516554313
       firstFrame: 0
       lastFrame: 1015
@@ -134,7 +134,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: "\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
-      takeName: "MMD\u5909\u63DB/Assets/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
+      takeName: "\u3053\u3068\u308D\u3053\u3068\u308D/Assets/Enemy/\u725B\u9B3C/\u725B\u9B3C\u30E2\u30FC\u30B7\u30E7\u30F3/\u725B\u9B3C\u79FB\u52D5(\u5F10)_vmd"
       internalID: -7662483115712361900
       firstFrame: 0
       lastFrame: 1015

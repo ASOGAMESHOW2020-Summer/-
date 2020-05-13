@@ -140,12 +140,12 @@
     <vertexScaleByHeightFlag>false</vertexScaleByHeightFlag>
     <vertexScaleByHeight>158</vertexScaleByHeight>
     <waitProcessExitting>false</waitProcessExitting>
-    <pmxAssetPath>Assets/牛鬼/牛鬼.pmx</pmxAssetPath>
+    <pmxAssetPath>Assets/Enemy/牛鬼/牛鬼.pmx</pmxAssetPath>
     <vmdAssetPathList>
-      <string>Assets/牛鬼/牛鬼モーション/牛鬼移動(壱).vmd</string>
-      <string>Assets/牛鬼/牛鬼モーション/牛鬼移動(弐).vmd</string>
+      <string>Assets/Enemy/牛鬼/牛鬼モーション/牛鬼移動(壱).vmd</string>
+      <string>Assets/Enemy/牛鬼/牛鬼モーション/牛鬼移動(弐).vmd</string>
     </vmdAssetPathList>
-    <fbxOutputPath>Assets/牛鬼/牛鬼.fbx</fbxOutputPath>
+    <fbxOutputPath>Assets/Enemy/牛鬼/牛鬼.fbx</fbxOutputPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
     <useWineFlag>false</useWineFlag>
     <wine>Manual</wine>
