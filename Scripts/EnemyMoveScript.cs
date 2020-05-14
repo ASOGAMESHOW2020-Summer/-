@@ -8,7 +8,9 @@ public class EnemyMoveScript : MonoBehaviour
     private CharacterController enemyController;
     //エネミーのアニメータ
     private Animator animator;
-    //　目的地
+    //SetPositionスクリプト
+    private SetPosition setPosition;
+    //目的地
     private Vector3 destination;
     //　歩くスピード
     [SerializeField]
@@ -19,22 +21,27 @@ public class EnemyMoveScript : MonoBehaviour
     private Vector3 direction;
     //　到着フラグ
     private bool arrived;
-    //　スタート位置
-    private Vector3 startPosition;
-
+    //待ち時間
+    [SerializeField]
+    private float waitTime = 5f;
+    //経過時間
+    private float elapstedTime;
 
     // Use this for initialization
     void Start()
     {
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        //Vector2のランダム位置を生成（半径10メートル）
-        var randDestination = Random.insideUnitCircle * 10;
-        //スタートポイントにランダムな位置を足して目的地にする
-        destination = startPosition + new Vector3(randDestination.x, 0, randDestination.y);
+        setPosition = GetComponent<SetPosition>();
+        //ランダムな位置の作成と設定
+        setPosition.CreateRandomPosition();
+        //目的地の取得
+        destination = setPosition.getDestination();
+        //経過時間の初期値設定
+        elapstedTime = 0f;
+        //velocityにゼロを設定
         velocity = Vector3.zero;
         arrived = false;
-        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -60,6 +67,18 @@ public class EnemyMoveScript : MonoBehaviour
             {
                 arrived = true;
                 animator.SetFloat("Speed", 0.0f);
+            }
+        }
+        else
+        {
+            elapstedTime += Time.deltaTime;
+            //待ち時間を超えたら次の目的地を設定
+            if(elapstedTime > waitTime)
+            {
+                setPosition.CreateRandomPosition();
+                destination = setPosition.getDestination();
+                arrived = false;
+                elapstedTime = 0f;
             }
         }
     }
