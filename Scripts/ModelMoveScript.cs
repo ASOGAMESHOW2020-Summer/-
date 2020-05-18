@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ModelMoveScript : MonoBehaviour
 {
+    public enum MyState
+    {
+        Normal,
+        Damage
+    };
+
+    private MyState state;
     private CharacterController characterController;
     private Animator animator;
     //　キャラクターの速度
@@ -32,56 +39,67 @@ public class ModelMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterController.isGrounded)//キャラクターが接地しているかどうか
+        if (state == MyState.Normal)
         {
-            
-            velocity = Vector3.zero;//速度をゼロにする
-
-            //横軸と縦軸の入力をインプットに代入
-            var input = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-
-            if (input.magnitude > 0.1f)//入力の長さを得て0.1より大きいか判断
+            if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
-                //引数で指定したベクトルの方向を向かせるメソッド
-                transform.LookAt(transform.position + input.normalized);
-                animator.SetFloat("Speed", input.magnitude);
-                if (input.magnitude > 0.5f)
+
+                velocity = Vector3.zero;//速度をゼロにする
+
+                //横軸と縦軸の入力をインプットに代入
+                var input = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+
+                if (input.magnitude > 0.1f)//入力の長さを得て0.1より大きいか判断
                 {
-                    velocity += transform.forward * runSpeed;
+                    //引数で指定したベクトルの方向を向かせるメソッド
+                    transform.LookAt(transform.position + input.normalized);
+                    animator.SetFloat("Speed", input.magnitude);
+                    if (input.magnitude > 0.5f)
+                    {
+                        velocity += transform.forward * runSpeed;
+                    }
+                    else
+                    {
+                        velocity += transform.forward * walkSpeed;
+                    }
                 }
                 else
                 {
-                    velocity += transform.forward * walkSpeed;
+                    animator.SetFloat("Speed", 0f);
                 }
-            }
-            else
-            {
-                animator.SetFloat("Speed", 0f);
-            }
 
-            //ジャンプ処理
-            if (Input.GetKeyDown("joystick button 3"))
-            {
-                animator.SetBool("JumpFlag", true);
-                //　走って移動している時はジャンプ力を上げる
-                if (input.magnitude > 0.5f)
+                //ジャンプ処理
+                if (Input.GetKeyDown("joystick button 3"))
                 {
-                    velocity.y += dashJumpPower;
+                    animator.SetBool("JumpFlag", true);
+                    //　走って移動している時はジャンプ力を上げる
+                    if (input.magnitude > 0.5f)
+                    {
+                        velocity.y += dashJumpPower;
+                    }
+                    else
+                    {
+                        velocity.y += jumpPower;
+                    }
                 }
                 else
                 {
-                    velocity.y += jumpPower;
+                    animator.SetBool("JumpFlag", false);
                 }
-            }
-            else
-            {
-                animator.SetBool("JumpFlag",false);
-            }
 
+            }
         }
         velocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
+    }
+
+    //エネミーから攻撃を受けた時の処理
+    public void Damage(Transform enemyTransform)
+    {
+        state = MyState.Damage;
+        velocity = Vector3.zero;
+        animator.SetTrigger("Damage");
     }
 
 }
