@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AttackEnemy : MonoBehaviour
 {
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerEnter(Collider col)
     {
-        if(coll.tag == "Player")
+        if (col.tag == "Player")
         {
             Debug.Log("当たり");
-            coll.GetComponent<ModelMoveScript>().Damage(transform.root);
+            col.GetComponent<CharacterMoveScript>().LifeDamage(1);
+            col.GetComponent<CharacterMoveScript>().Damage(transform.root);
         }
     }
 }
+

@@ -7,7 +7,8 @@ public class CharacterMoveScript : MonoBehaviour
     public enum MyState
     {
         Normal,
-        Damage
+        Damage,
+        Dead
     };
 
     private MyState state;
@@ -27,18 +28,33 @@ public class CharacterMoveScript : MonoBehaviour
     //　走っている時のジャンプ力
     [SerializeField]
     private float dashJumpPower = 5.6f;
+    //　HP
+    [SerializeField]
+    private int hp;
+    //　LifeGaugeスクリプト
+    [SerializeField]
+    private LifeGauge lifeGauge;
 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        //　体力の初期化
+        hp = 3;
+        //　体力ゲージに反映
+        lifeGauge.SetLifeGauge(hp);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(state == MyState.Dead)
+        {
+            return;
+        }
+
         if (state == MyState.Normal)
         {
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
@@ -109,5 +125,26 @@ public class CharacterMoveScript : MonoBehaviour
         state = MyState.Damage;
         velocity = Vector3.zero;
         animator.SetTrigger("Damage");
+    }
+
+    //ライフを減らす処理
+    public void LifeDamage(int damage)
+    {
+        hp -= damage;
+        //　0より下の数値にならないようにする
+        hp = Mathf.Max(0, hp);
+
+        if (hp >= 0)
+        {
+            lifeGauge.SetLifeGauge(hp);
+        }
+
+        if(hp <= 0)
+        {
+            state = MyState.Damage;
+            velocity = Vector3.zero;
+            animator.SetBool("Dead", true);
+        }
+
     }
 }
