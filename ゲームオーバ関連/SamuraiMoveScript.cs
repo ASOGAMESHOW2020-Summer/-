@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SamuraiMoveScript : MonoBehaviour
 {
-    public enum MyState
+    public enum SamuraiState
     {
         Normal,
         Damage,
         Dead
     };
 
-    private MyState state;
+    private SamuraiState state;
     private CharacterController characterController;
     private Animator animator;
     //　キャラクターの速度
@@ -48,17 +48,18 @@ public class SamuraiMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DeadButton();
-        }
-        if (state == MyState.Dead)
+        
+        if (state == SamuraiState.Dead)
         {
             return;
         }
 
-        if (state == MyState.Normal)
+        if (state == SamuraiState.Normal)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                DeadButton();
+            }
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
 
@@ -114,20 +115,20 @@ public class SamuraiMoveScript : MonoBehaviour
     }
 
     //プレイヤーの状態変更メソッド
-    public void SetState(MyState tempState)
+    public void SetState(SamuraiState tempState)
     {
-        if (tempState == MyState.Normal)
+        if (tempState == SamuraiState.Normal)
         {
-            state = MyState.Normal;
+            state = SamuraiState.Normal;
         }
-        else if(tempState == MyState.Dead)
+        else if(tempState == SamuraiState.Dead)
         {
-            state = MyState.Dead;
+            state = SamuraiState.Dead;
         }
     }
 
     //プレイヤーの状態取得メソッド
-    public MyState GetState()
+    public SamuraiState GetState()
     {
         return state;
     }
@@ -135,7 +136,7 @@ public class SamuraiMoveScript : MonoBehaviour
     //エネミーから攻撃を受けた時の処理
     public void Damage(Transform enemyTransform)
     {
-        state = MyState.Damage;
+        state = SamuraiState.Damage;
         velocity = Vector3.zero;
         animator.SetTrigger("Damage");
     }
@@ -154,7 +155,7 @@ public class SamuraiMoveScript : MonoBehaviour
 
         if (hp <= 0)
         {
-            state = MyState.Dead;
+            state = SamuraiState.Dead;
             velocity = Vector3.zero;
             animator.SetBool("Dead", true);
         }
@@ -164,11 +165,10 @@ public class SamuraiMoveScript : MonoBehaviour
     //テスト用
     void DeadButton()
     {
-        state = MyState.Dead;
-        LifeDamage(3);
-        hp = 0;
+        SetState(SamuraiState.Dead);
+       // state = SamuraiState.Dead;
         velocity = Vector3.zero;
         animator.SetBool("Dead", true);
-        Debug.Log("眠れ、安らかに");
+        Debug.Log(state);
     }
 }

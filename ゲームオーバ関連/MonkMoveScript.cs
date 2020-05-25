@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MonkMoveScript : MonoBehaviour
 {
-    public enum MyState
+    public enum MonkState
     {
         Normal,
         Damage,
         Dead
     };
 
-    private MyState state;
+    private MonkState state;
     private CharacterController characterController;
     private Animator animator;
     //　キャラクターの速度
@@ -48,17 +48,18 @@ public class MonkMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DeadButton();
-        }
-        if (state == MyState.Dead)
+        
+        if (state == MonkState.Dead)
         {
             return;
         }
 
-        if (state == MyState.Normal)
+        if (state == MonkState.Normal)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                DeadButton();
+            }
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
 
@@ -114,16 +115,20 @@ public class MonkMoveScript : MonoBehaviour
     }
 
     //プレイヤーの状態変更メソッド
-    public void SetState(MyState tempState)
+    public void SetState(MonkState tempState)
     {
-        if (tempState == MyState.Normal)
+        if (tempState == MonkState.Normal)
         {
-            state = MyState.Normal;
+            state = MonkState.Normal;
+        }
+        else if (tempState == MonkState.Dead)
+        {
+            state = MonkState.Dead;
         }
     }
 
     //プレイヤーの状態取得メソッド
-    public MyState GetState()
+    public MonkState GetState()
     {
         return state;
     }
@@ -131,7 +136,7 @@ public class MonkMoveScript : MonoBehaviour
     //エネミーから攻撃を受けた時の処理
     public void Damage(Transform enemyTransform)
     {
-        state = MyState.Damage;
+        state = MonkState.Damage;
         velocity = Vector3.zero;
         animator.SetTrigger("Damage");
     }
@@ -150,7 +155,7 @@ public class MonkMoveScript : MonoBehaviour
 
         if (hp <= 0)
         {
-            state = MyState.Dead;
+            state = MonkState.Dead;
             velocity = Vector3.zero;
             animator.SetBool("Dead", true);
         }
@@ -160,11 +165,10 @@ public class MonkMoveScript : MonoBehaviour
     //テスト用
     void DeadButton()
     {
-        state = MyState.Dead;
-        LifeDamage(3);
-        hp = 0;
+        SetState(MonkState.Dead);
+        // state = MonkState.Dead;
         velocity = Vector3.zero;
         animator.SetBool("Dead", true);
-        Debug.Log("地獄で会おうぜ");
+        Debug.Log(state);
     }
 }

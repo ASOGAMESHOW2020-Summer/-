@@ -954,7 +954,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916782474463775422}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 556c4ca1639f3554db123ef4290349eb, type: 3}
   m_Controller: {fileID: 9100000, guid: 0507d70e6b042874284f7e32a9d69169, type: 2}
   m_CullingMode: 0
@@ -1341,12 +1341,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.45
+  m_Radius: 0.42
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.92, z: 0.14}
+  m_Center: {x: 0, y: 1, z: 0.14}
 --- !u!114 &6357084883806903478
 MonoBehaviour:
   m_ObjectHideFlags: 0

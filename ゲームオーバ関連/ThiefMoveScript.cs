@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ThiefMoveScript : MonoBehaviour
 {
-    public enum MyState
+    public enum ThiefState
     {
         Normal,
         Damage,
         Dead
     };
 
-    private MyState state;
+    private ThiefState state;
     private CharacterController characterController;
     private Animator animator;
     //　キャラクターの速度
@@ -48,17 +48,18 @@ public class ThiefMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DeadButton();
-        }
-        if (state == MyState.Dead)
+        
+        if (state == ThiefState.Dead)
         {
             return;
         }
 
-        if (state == MyState.Normal)
+        if (state == ThiefState.Normal)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                DeadButton();
+            }
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
 
@@ -114,16 +115,20 @@ public class ThiefMoveScript : MonoBehaviour
     }
 
     //プレイヤーの状態変更メソッド
-    public void SetState(MyState tempState)
+    public void SetState(ThiefState tempState)
     {
-        if (tempState == MyState.Normal)
+        if (tempState == ThiefState.Normal)
         {
-            state = MyState.Normal;
+            state = ThiefState.Normal;
+        }
+        else if(tempState == ThiefState.Dead)
+        {
+            state = ThiefState.Dead;
         }
     }
 
     //プレイヤーの状態取得メソッド
-    public MyState GetState()
+    public ThiefState GetState()
     {
         return state;
     }
@@ -131,7 +136,7 @@ public class ThiefMoveScript : MonoBehaviour
     //エネミーから攻撃を受けた時の処理
     public void Damage(Transform enemyTransform)
     {
-        state = MyState.Damage;
+        state = ThiefState.Damage;
         velocity = Vector3.zero;
         animator.SetTrigger("Damage");
     }
@@ -150,7 +155,7 @@ public class ThiefMoveScript : MonoBehaviour
 
         if (hp <= 0)
         {
-            state = MyState.Dead;
+            state = ThiefState.Dead;
             velocity = Vector3.zero;
             animator.SetBool("Dead", true);
         }
@@ -160,11 +165,10 @@ public class ThiefMoveScript : MonoBehaviour
     //テスト用
     void DeadButton()
     {
-        state = MyState.Dead;
-        LifeDamage(3);
-        hp = 0;
+        SetState(ThiefState.Dead);
+        //state = ThiefState.Dead;
         velocity = Vector3.zero;
         animator.SetBool("Dead", true);
-        Debug.Log("拙者の腕が未熟故");
+        Debug.Log(state);
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class OnmyojiMoveScript : MonoBehaviour
 {
-    public enum MyState
+    public enum OnmyojiState
     {
         Normal,
         Damage,
         Dead
     };
 
-    private MyState state;
+    private OnmyojiState state;
     private CharacterController characterController;
     private Animator animator;
     //　キャラクターの速度
@@ -48,17 +48,18 @@ public class OnmyojiMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DeadButton();
-        }
-        if (state == MyState.Dead)
+       
+        if (state == OnmyojiState.Dead)
         {
             return;
         }
 
-        if (state == MyState.Normal)
+        if (state == OnmyojiState.Normal)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                DeadButton();
+            }
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
 
@@ -114,16 +115,20 @@ public class OnmyojiMoveScript : MonoBehaviour
     }
 
     //プレイヤーの状態変更メソッド
-    public void SetState(MyState tempState)
+    public void SetState(OnmyojiState tempState)
     {
-        if (tempState == MyState.Normal)
+        if (tempState == OnmyojiState.Normal)
         {
-            state = MyState.Normal;
+            state = OnmyojiState.Normal;
+        }
+        else if(tempState == OnmyojiState.Dead)
+        {
+            state = OnmyojiState.Dead;
         }
     }
 
     //プレイヤーの状態取得メソッド
-    public MyState GetState()
+    public OnmyojiState GetState()
     {
         return state;
     }
@@ -131,7 +136,7 @@ public class OnmyojiMoveScript : MonoBehaviour
     //エネミーから攻撃を受けた時の処理
     public void Damage(Transform enemyTransform)
     {
-        state = MyState.Damage;
+        state = OnmyojiState.Damage;
         velocity = Vector3.zero;
         animator.SetTrigger("Damage");
     }
@@ -150,7 +155,7 @@ public class OnmyojiMoveScript : MonoBehaviour
 
         if (hp <= 0)
         {
-            state = MyState.Dead;
+            state = OnmyojiState.Dead;
             velocity = Vector3.zero;
             animator.SetBool("Dead", true);
         }
@@ -160,11 +165,11 @@ public class OnmyojiMoveScript : MonoBehaviour
     //テスト用
     void DeadButton()
     {
-        state = MyState.Dead;
-        LifeDamage(3);
+        SetState(OnmyojiState.Dead);
+        //state = OnmyojiState.Dead;
         velocity = Vector3.zero;
         animator.SetBool("Dead", true);
-        Debug.Log("死して尚、怨霊になりし");
+        Debug.Log(state);
         
     }
 }
