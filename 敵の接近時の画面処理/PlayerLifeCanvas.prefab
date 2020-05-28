@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1786223602}
   - component: {fileID: 1786223601}
   - component: {fileID: 1786223603}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: P1FlashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,11 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1125,7 +1125,7 @@ GameObject:
   - component: {fileID: 2031266501689445872}
   - component: {fileID: 7073081603908446623}
   - component: {fileID: 7847660271305186064}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: P4FlashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 2769307065894885562}
   - component: {fileID: 7944091486096435844}
   - component: {fileID: 2429679625825192251}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: P3FlashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1299,7 +1299,7 @@ GameObject:
   - component: {fileID: 6037548125913683217}
   - component: {fileID: 617937928788652242}
   - component: {fileID: 3177132731538684012}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: P2FlashImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

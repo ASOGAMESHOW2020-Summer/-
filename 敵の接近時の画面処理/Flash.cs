@@ -29,4 +29,9 @@ public class Flash : MonoBehaviour
 
         }
     }
+
+    public void ColorClear()
+    {
+        this.img.color = Color.clear;
+    }
 }
