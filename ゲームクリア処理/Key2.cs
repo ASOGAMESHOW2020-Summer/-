@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Key : MonoBehaviour
+public class Key2 : MonoBehaviour
 {
     private bool KeyFlag = false;
 
@@ -11,31 +11,31 @@ public class Key : MonoBehaviour
     {
         KeyFlag = false;
     }
-
+   
     void OnTriggerEnter(Collider coll)
     {
-        if(coll.tag == "Samurai")
+        if (coll.tag == "Samurai")
         {
             Destroy(gameObject);
             coll.GetComponent<SamuraiMoveScript>().SetKeyFlag(true);
             KeyFlag = true;
             GetKeyFlag();
         }
-        else if(coll.tag == "Monk")
+        else if (coll.tag == "Monk")
         {
             Destroy(gameObject);
             coll.GetComponent<MonkMoveScript>().SetKeyFlag(true);
             KeyFlag = true;
             GetKeyFlag();
         }
-        else if(coll.tag == "Onmyoji")
+        else if (coll.tag == "Onmyoji")
         {
             Destroy(gameObject);
             coll.GetComponent<OnmyojiMoveScript>().SetKeyFlag(true);
             KeyFlag = true;
             GetKeyFlag();
         }
-        else if(coll.tag == "Thief")
+        else if (coll.tag == "Thief")
         {
             Destroy(gameObject);
             coll.GetComponent<ThiefMoveScript>().SetKeyFlag(true);
@@ -48,5 +48,4 @@ public class Key : MonoBehaviour
     {
         return KeyFlag;
     }
-
 }

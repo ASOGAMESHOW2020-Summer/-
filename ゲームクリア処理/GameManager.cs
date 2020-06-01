@@ -26,10 +26,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ThiefMoveScript ThiefScript;
     ////鍵を格納する
-    //[SerializeField]
-    //private GameObject KeyObj;
-    //[SerializeField]
-    //private Key KeyScript;
+    [SerializeField]
+    private Key KeyScript;
+    [SerializeField]
+    private Key2 KeyScript2;
+    [SerializeField]
+    private Key3 KeyScript3;
+    [SerializeField]
+    private GameObject[] KeyObj;
 
 
     // Start is called before the first frame update
@@ -44,14 +48,20 @@ public class GameManager : MonoBehaviour
         Thief = GameObject.Find("盗賊");
         ThiefScript = Thief.GetComponent<ThiefMoveScript>();
         Debug.Log("とんでもねぇ待ってたんだ");
-        //KeyObj = GameObject.Find("鍵");
-        //KeyScript = KeyObj.GetComponent<Key>();
+
+        KeyObj[0] = GameObject.Find("鍵");
+        KeyScript = KeyObj[0].GetComponent<Key>();
+        KeyObj[1] = GameObject.Find("鍵2");
+        KeyScript2 = KeyObj[1].GetComponent<Key2>();
+        KeyObj[2] = GameObject.Find("鍵3");
+        KeyScript3 = KeyObj[2].GetComponent<Key3>();
     }
 
     // Update is called once per frame
     void Update()
     {
        GameOver();
+       GameClear();
     }
 
     void GameOver()
@@ -72,6 +82,19 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Test");
             Debug.Log("ゲームオーバシーン移動");
+        }
+    }
+
+    void GameClear()
+    {
+        var key1 = KeyScript.GetKeyFlag();
+        var key2 = KeyScript2.GetKeyFlag();
+        var key3 = KeyScript3.GetKeyFlag();
+
+        if ((key1 == true) && (key2 == true) && (key3 == true))
+        {
+            Debug.Log("ゲームクリアシーン移動");
+            SceneManager.LoadScene("Test2");
         }
     }
 }
