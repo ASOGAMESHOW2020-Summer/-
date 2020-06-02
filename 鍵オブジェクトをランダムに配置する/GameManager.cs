@@ -38,10 +38,6 @@ public class GameManager : MonoBehaviour
     private Key2 KeyScript2;
     [SerializeField]
     private Key3 KeyScript3;
-    [SerializeField]
-    private GameObject apperance;
-    [SerializeField]
-    private ApperanceKey apperanceScript;
 
     void Start()
     {   
@@ -54,11 +50,11 @@ public class GameManager : MonoBehaviour
         Thief = GameObject.Find("盗賊");
         ThiefScript = Thief.GetComponent<ThiefMoveScript>();
         Debug.Log("とんでもねぇ待ってたんだ");
-        key = GameObject.Find("鍵(Clone)");
+        key = GameObject.Find("鍵");
         KeyScript = key.GetComponent<Key>();
-        key2 = GameObject.Find("鍵2(Clone)");
+        key2 = GameObject.Find("鍵2");
         KeyScript2 = key2.GetComponent<Key2>();
-        key3 = GameObject.Find("鍵3(Clone)");
+        key3 = GameObject.Find("鍵3");
         KeyScript3 = key3.GetComponent<Key3>();
     }
 
