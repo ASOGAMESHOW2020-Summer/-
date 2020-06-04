@@ -59,6 +59,8 @@ public class ThiefMoveScript : MonoBehaviour
     private const int SkillNumMax = 3;
     //スキルを使用した回数
     private int SkillNum = 0;
+    //スキル時間
+    private float second;
 
     void Start()
     {
@@ -75,12 +77,16 @@ public class ThiefMoveScript : MonoBehaviour
         //鍵フラグの初期化
         KeyFlag = false;
         SkillFlag = false;
+        //時間の初期化
+        second = 0f;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        second += Time.deltaTime;
+
         if (state == ThiefState.Dead)
         {
             return;
@@ -118,12 +124,14 @@ public class ThiefMoveScript : MonoBehaviour
                 {
                     animator.SetFloat("Speed", 0f);
                 }
-
+               
                 //スキル処理（一定時間速度を上げる）
-                if(Input.GetKeyDown("joystick button 5"))
+                if(Input.GetButtonDown("ThiefSkill"))
                 {
+                    Debug.Log("コントローラ4");
                     if (SkillNum < SkillNumMax)
                     {
+                        second = 0f;
                         walkSpeed = 4f;
                         runSpeed = 8f;
                         Debug.Log("韋駄天なり");
@@ -132,10 +140,18 @@ public class ThiefMoveScript : MonoBehaviour
                         SkillNum++;
                         Debug.Log(SkillNum);
                     }
-                    Invoke("NormalSpeed", 6f);
                 }
+                else
+                {
+                    if (second > 15)
+                    {
+                        walkSpeed = 4f;
+                        runSpeed = 6f;
+                    }
+                }
+               
                 //ジャンプ処理
-                if (Input.GetKeyDown("joystick button 3"))
+                if (Input.GetButtonDown("ThiefJump"))
                 {
                     animator.SetBool("JumpFlag", true);
                     //　走って移動している時はジャンプ力を上げる
@@ -222,13 +238,6 @@ public class ThiefMoveScript : MonoBehaviour
         KeyFlag = flag;
     }
 
-    //速度を戻す
-    void NormalSpeed()
-    {
-        Debug.Log("追いつかれたか");
-        walkSpeed = 4f;
-        runSpeed = 6f;
-    }
     //テスト用
     void DeadButton()
     {
