@@ -55,6 +55,8 @@ public class MonkMoveScript : MonoBehaviour
     private bool KeyFlag = false;
     //スキルフラグ
     private bool SkillFlag = false;
+    //時間計測
+    private float second = 0f;
 
     void Start()
     {
@@ -70,12 +72,13 @@ public class MonkMoveScript : MonoBehaviour
         lifeGauge.SetLifeGauge(hp);
         //鍵フラグの初期化
         KeyFlag = false;
+        second = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        second += Time.deltaTime;
         if (state == MonkState.Dead)
         {
             return;
@@ -103,7 +106,6 @@ public class MonkMoveScript : MonoBehaviour
                     if (input.magnitude > 0.5f)
                     {
                         velocity += transform.forward * runSpeed;
-                       // Debug.Log(velocity);
                     }
                     else
                     {
@@ -116,13 +118,22 @@ public class MonkMoveScript : MonoBehaviour
                 }
 
                 //スキル処理
-                if (Input.GetKeyDown("joystick button 5"))
+                if (Input.GetButtonDown("MonkSkill"))
                 {
+                    Debug.Log("コントローラ2");
+                    second = 0f;
                     SkillFlag = true;
+                }
+                else
+                {
+                    if (second > 15)
+                    {
+                        SkillFlag = false;
+                    }
                 }
 
                 //ジャンプ処理
-                if (Input.GetKeyDown("joystick button 3"))
+                if (Input.GetButtonDown("MonkJump"))
                 {
                     animator.SetBool("JumpFlag", true);
                     //　走って移動している時はジャンプ力を上げる

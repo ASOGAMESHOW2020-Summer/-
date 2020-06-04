@@ -45,10 +45,12 @@ public class EnemyMoveScript : MonoBehaviour
     //攻撃した後の硬直時間
     [SerializeField]
     private float FreezeTime = 0.5f;
+    //エフェクトオブジェクト
+    [SerializeField]
+    private GameObject damageEffect;
     [SerializeField]
     private GameObject MonkObj;
     private MonkMoveScript MonkScript;
-    private float second = 0f;
 
 
     void Start()
@@ -63,19 +65,17 @@ public class EnemyMoveScript : MonoBehaviour
         arrived = false;
         elapsedTime = 0f;
         SetState(EnemyState.Walk);
-        second = 0f;
     }
 
     void Update()
-    {
-        second += Time.deltaTime;
+    { 
         if(MonkScript.GetSkillFlag() == true)
         {
             walkSpeed = 0.5f;
-            if(second % 30 == 0)
-            {
-                MonkScript.SetSkillFlag(false);
-            }
+        }
+        else if(MonkScript.GetSkillFlag() == false)
+        {
+            walkSpeed = 1.0f;
         }
         //見回りまたはキャラクターを追いかける状態
         if (state == EnemyState.Walk || state == EnemyState.Chase)
@@ -183,6 +183,16 @@ public class EnemyMoveScript : MonoBehaviour
             animator.SetTrigger("Damage");
         }
     }
+
+    //ダメージの処理
+    public void Damage(Vector3 attackPlace)
+    {
+        SetState(EnemyState.Damage);
+        var damageEffectInstance = Instantiate<GameObject>(damageEffect);
+        damageEffectInstance.transform.position = attackPlace;
+        Destroy(damageEffectInstance, 1f);
+    }
+
     //エネミーの状態取得メソッド
     public EnemyState GetState()
     {
