@@ -64,7 +64,7 @@ public class ThiefMoveScript : MonoBehaviour
     private float second;
     //エフェクトオブジェクト
     [SerializeField]
-    private GameObject sKillEffect;
+    private GameObject skillEffect;
     [SerializeField]
     private ParticleSystem skillParticle;
 
@@ -76,8 +76,8 @@ public class ThiefMoveScript : MonoBehaviour
         flash = obj.GetComponent<Flash>();
         distance = GetComponent<P4DistanceEnemy>();
         deadImage.GetComponent<Image>();
-        sKillEffect = GameObject.Find("Wind");
-        skillParticle = sKillEffect.GetComponent<ParticleSystem>();
+        skillEffect = GameObject.Find("Wind");
+        skillParticle = skillEffect.GetComponent<ParticleSystem>();
         //　体力の初期化
         hp = 3;
         //　体力ゲージに反映
@@ -133,7 +133,7 @@ public class ThiefMoveScript : MonoBehaviour
 
                 var positon = transform.position;
                 //スキル処理（一定時間速度を上げる）
-                if(Input.GetButtonDown("SamuraiSkill"))
+                if(Input.GetButtonDown("ThiefSkill"))
                 {
                     Debug.Log("コントローラ4");
                     if (SkillNum < SkillNumMax)
