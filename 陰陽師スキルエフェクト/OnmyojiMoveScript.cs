@@ -128,7 +128,7 @@ public class OnmyojiMoveScript : MonoBehaviour
                 }
 
                 //スキル処理
-                if (Input.GetButtonDown("SamuraiSkill"))
+                if (Input.GetButtonDown("OnmyojiSkill"))
                 {
                     Debug.Log("コントローラ3");
                     SkillFlag = true;
