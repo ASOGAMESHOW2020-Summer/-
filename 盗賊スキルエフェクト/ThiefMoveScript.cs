@@ -47,9 +47,6 @@ public class ThiefMoveScript : MonoBehaviour
     //ダメージエフェクト
     [SerializeField]
     private GameObject damageEffect;
-    //スキルエフェクト
-    [SerializeField]
-    private GameObject skillEffect;
     ///<summary>
     ///使用するInputKey名を入れる
     ///</summary>
@@ -65,6 +62,11 @@ public class ThiefMoveScript : MonoBehaviour
     private int SkillNum = 0;
     //スキル時間
     private float second;
+    //エフェクトオブジェクト
+    [SerializeField]
+    private GameObject sKillEffect;
+    [SerializeField]
+    private ParticleSystem skillParticle;
 
     void Start()
     {
@@ -74,6 +76,8 @@ public class ThiefMoveScript : MonoBehaviour
         flash = obj.GetComponent<Flash>();
         distance = GetComponent<P4DistanceEnemy>();
         deadImage.GetComponent<Image>();
+        sKillEffect = GameObject.Find("Wind");
+        skillParticle = sKillEffect.GetComponent<ParticleSystem>();
         //　体力の初期化
         hp = 3;
         //　体力ゲージに反映
@@ -142,14 +146,14 @@ public class ThiefMoveScript : MonoBehaviour
                         Debug.Log(runSpeed);
                         SkillNum++;
                         Debug.Log(SkillNum);
-                        var skillEffectInstance = Instantiate<GameObject>(skillEffect, positon, Quaternion.identity) as GameObject; ;
+                        skillParticle.Play();
                     }
                 }
                 else
                 {
                     if (second > 15)
                     {
-                        Destroy(skillEffect, 0.1f);
+                        skillParticle.Stop();
                         walkSpeed = 4f;
                         runSpeed = 6f;
                     }
