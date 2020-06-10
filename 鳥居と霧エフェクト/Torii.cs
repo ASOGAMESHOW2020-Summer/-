@@ -34,9 +34,9 @@ public class Torii : MonoBehaviour
     GameObject Player4;
     //エフェクトオブジェクト
     [SerializeField]
-    private GameObject skillEffect;
+    private GameObject effect;
     [SerializeField]
-    private ParticleSystem skillParticle;
+    private ParticleSystem particle;
 
     void Start()
     {
@@ -52,16 +52,25 @@ public class Torii : MonoBehaviour
         Player2 = GameObject.Find("僧侶");
         Player3 = GameObject.Find("陰陽師");
         Player4 = GameObject.Find("盗賊");
-
         //フラグの初期化
         Player1Escape = false;
         Player2Escape = false;
         Player3Escape = false;
         Player4Escape = false;
+        //エフェクトパーティクル
+        effect = GameObject.Find("霧の壁");
+        particle = effect.GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
+        var key1 = KeyScript.GetKeyFlag();
+        var key2 = KeyScript2.GetKeyFlag();
+        var key3 = KeyScript3.GetKeyFlag();
+        if((key1 == true) && (key2 == true) && (key3 == true))
+        {
+            particle.Stop();
+        }
         GameClear();
     }
 
