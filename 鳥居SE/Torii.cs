@@ -67,15 +67,17 @@ public class Torii : MonoBehaviour
 
     void Update()
     {
-        audioSource.enabled = false;
-
         var key1 = KeyScript.GetKeyFlag();
         var key2 = KeyScript2.GetKeyFlag();
         var key3 = KeyScript3.GetKeyFlag();
         if((key1 == true) && (key2 == true) && (key3 == true))
         {
-            audioSource.enabled = true;
+            audioSource.Play();
             particle.Stop();
+        }
+        else
+        {
+            audioSource.enabled = false;
         }
         GameClear();
     }
