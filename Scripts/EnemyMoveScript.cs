@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿/*エネミー行動スクリプト*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMoveScript : MonoBehaviour
 {
@@ -11,7 +13,9 @@ public class EnemyMoveScript : MonoBehaviour
         Wait,
         Chase,
         Attack,
-        Freeze
+        Freeze,
+        Damage,
+        DamageWait
     };
 
     //エネミーのキャラクターコントローラ
@@ -34,6 +38,8 @@ public class EnemyMoveScript : MonoBehaviour
     //待ち時間
     [SerializeField]
     private float waitTime = 5f;
+    //ダメージ時の止まる時間
+    private float stopTime = 8f;
     //経過時間
     private float elapsedTime;
     //エネミーの状態
@@ -43,22 +49,80 @@ public class EnemyMoveScript : MonoBehaviour
     //攻撃した後の硬直時間
     [SerializeField]
     private float FreezeTime = 0.5f;
-
+    //エフェクトオブジェクト
+    [SerializeField]
+    private GameObject damageEffect;
+    [SerializeField]
+    private GameObject MonkObj;
+    private MonkMoveScript MonkScript;
+    //Audio関係
+    [SerializeField]
+    private AudioClip DamageSe;
+    [SerializeField]
+    private AudioClip AttackSe;
+    AudioSource audioSource;
+    //スキルを食らった時のエフェクト
+    [SerializeField]
+    private GameObject MonkskillEffect;
+    [SerializeField]
+    private ParticleSystem MonkskillParticle;
+    //スキルを食らった時のエフェクト
+    [SerializeField]
+    private GameObject OnmyoskillEffect;
+    [SerializeField]
+    private ParticleSystem OnmyoskillParticle;
+    private float second = 0;
 
     void Start()
     {
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         setPosition = GetComponent<SetPosition>();
+        MonkObj = GameObject.Find("僧侶");
+        MonkScript = MonkObj.GetComponent<MonkMoveScript>();
+        audioSource = GetComponent<AudioSource>();
         setPosition.CreateRandomPosition();
         velocity = Vector3.zero;
         arrived = false;
         elapsedTime = 0f;
         SetState(EnemyState.Walk);
+        second = 0f;
+        MonkskillEffect = GameObject.Find("Slow");
+        MonkskillParticle = MonkskillEffect.GetComponent<ParticleSystem>();
+        OnmyoskillEffect = GameObject.Find("OnmyoSkill");
+        OnmyoskillParticle = OnmyoskillEffect.GetComponent<ParticleSystem>();
+        //最初はパーティクルの再生を止めておく
+        MonkskillParticle.Stop();
+        OnmyoskillParticle.Stop();
     }
 
     void Update()
     {
+        //僧侶のスキルが使われた時のエフェクト
+        if (MonkScript.GetSkillFlag() == true)
+        {
+            MonkskillParticle.Play();
+            walkSpeed = 1.1f;
+        }
+        else if (MonkScript.GetSkillFlag() == false)
+        {
+            MonkskillParticle.Stop();
+            walkSpeed = 0.8f;
+        }
+
+        //陰陽師のスキルが使われたとき
+        if(OnmyojiMoveScript.OnmyoFlag == true)
+        {
+            Debug.Log("動き封じ");
+            OnmyoskillParticle.Play();
+            SetState(EnemyState.Wait);
+        }
+        else if(OnmyojiMoveScript.OnmyoFlag == false)
+        {
+            OnmyoskillParticle.Stop();
+            SetState(EnemyState.Walk);
+        }
+
         //見回りまたはキャラクターを追いかける状態
         if (state == EnemyState.Walk || state == EnemyState.Chase)
         {
@@ -87,8 +151,9 @@ public class EnemyMoveScript : MonoBehaviour
             }
             else if (state == EnemyState.Chase)
             {
+                Debug.Log("プレイヤー追いかけ中");
                 //攻撃する距離だったら攻撃
-                if(Vector3.Distance(transform.position,setPosition.GetDestination()) <1f)
+                if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 1f)
                 {
                     SetState(EnemyState.Attack);
                 }
@@ -110,6 +175,18 @@ public class EnemyMoveScript : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (elapsedTime > FreezeTime)
             {
+                SetState(EnemyState.Walk);
+            }
+        }
+        //ダメージを受けたら止まる
+        else if (state == EnemyState.DamageWait)
+        {
+            second += Time.deltaTime;
+
+            //待ち時間を越えたら次の目的地を設定
+            if (second > stopTime)
+            {
+                Debug.Log("許さぬぞ");
                 SetState(EnemyState.Walk);
             }
         }
@@ -145,6 +222,7 @@ public class EnemyMoveScript : MonoBehaviour
         }
         else if (tempState == EnemyState.Attack)
         {
+            audioSource.PlayOneShot(AttackSe);
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", true);
@@ -156,7 +234,33 @@ public class EnemyMoveScript : MonoBehaviour
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", false);
         }
+        else if(tempState == EnemyState.Damage)
+        {
+            Debug.Log("グワァァァー");
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Damage");
+            SetState(EnemyState.DamageWait);
+        }
+        else if(tempState == EnemyState.DamageWait)
+        {
+            Debug.Log("苦しみ中");
+            second = 0f;
+            state = tempState;
+            velocity = Vector3.zero;
+            animator.SetFloat("Speed", 0f);
+        }
     }
+
+    //ダメージの処理
+    public void Damage(Vector3 attackPlace)
+    {
+        audioSource.PlayOneShot(DamageSe);
+        SetState(EnemyState.Damage);
+        var damageEffectInstance = Instantiate<GameObject>(damageEffect);
+        damageEffectInstance.transform.position = attackPlace;
+        Destroy(damageEffectInstance, 1f);
+    }
+
     //エネミーの状態取得メソッド
     public EnemyState GetState()
     {

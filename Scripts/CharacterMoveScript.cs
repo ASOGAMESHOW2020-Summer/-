@@ -35,8 +35,6 @@ public class CharacterMoveScript : MonoBehaviour
     [SerializeField]
     private LifeGauge lifeGauge;
 
-
-
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -50,6 +48,10 @@ public class CharacterMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DeadButton();
+        }
         if(state == MyState.Dead)
         {
             return;
@@ -73,6 +75,7 @@ public class CharacterMoveScript : MonoBehaviour
                     if (input.magnitude > 0.5f)
                     {
                         velocity += transform.forward * runSpeed;
+                        Debug.Log(velocity);
                     }
                     else
                     {
@@ -102,12 +105,12 @@ public class CharacterMoveScript : MonoBehaviour
                 {
                     animator.SetBool("JumpFlag", false);
                 }
-
             }
         }
         velocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
+       
     }
 
     //プレイヤーの状態変更メソッド
@@ -117,6 +120,12 @@ public class CharacterMoveScript : MonoBehaviour
         {
             state = MyState.Normal;
         }
+    }
+
+    //プレイヤーの状態取得メソッド
+    public MyState GetState()
+    {
+        return state;
     }
 
     //エネミーから攻撃を受けた時の処理
@@ -141,10 +150,19 @@ public class CharacterMoveScript : MonoBehaviour
 
         if(hp <= 0)
         {
-            state = MyState.Damage;
+            state = MyState.Dead;
             velocity = Vector3.zero;
             animator.SetBool("Dead", true);
         }
 
+    }
+
+    //テスト用
+    void DeadButton()
+    {
+        hp = 0;
+        velocity = Vector3.zero;
+        animator.SetBool("Dead", true);
+        Debug.Log("眠れ、安らかに");
     }
 }

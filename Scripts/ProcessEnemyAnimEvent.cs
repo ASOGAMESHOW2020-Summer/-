@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿/*エネミーのアニムイベントを受け取るスクリプト*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProcessEnemyAnimEvent : MonoBehaviour
 {
-    private EnemyMoveScript enemy;
+    private NavMeshEnemyMove enemy;
     [SerializeField]
     private SphereCollider sphereCollider;
 
 
     void Start()
     {
-        enemy = GetComponent<EnemyMoveScript>();
+        enemy = GetComponent<NavMeshEnemyMove>();
     }
 
     public void AttackStart()
@@ -26,7 +27,7 @@ public class ProcessEnemyAnimEvent : MonoBehaviour
     
     public void StateEnd()
     {
-        enemy.SetState(EnemyMoveScript.EnemyState.Freeze);
+        enemy.SetState(NavMeshEnemyMove.EnemyState.Freeze);
     }
 
 }
