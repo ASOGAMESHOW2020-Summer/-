@@ -102,35 +102,41 @@ public class NavMeshEnemyMove : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
-        Debug.Log(playerTransform);
-
         //僧侶のスキルが使われた時のエフェクト
-        if (MonkScript.GetSkillFlag() == true)
+        if (MonkButton.MonkFlag == true)
         {
-            MonkskillParticle.Play();
-            // walkSpeed = 1.1f;
-            navmesh.speed = 1.1f;
-        }
-        else if (MonkScript.GetSkillFlag() == false)
-        {
-            MonkskillParticle.Stop();
-            //walkSpeed = 0.8f;
-            navmesh.speed = 0.8f;
+            if (MonkScript.GetSkillFlag() == true)
+            {
+                MonkskillParticle.Play();
+                // walkSpeed = 1.1f;
+                navmesh.speed = 2.0f;
+
+                if (MonkScript.GetSkillFlag() == false)
+                {
+                    MonkskillParticle.Stop();
+                    //walkSpeed = 0.8f;
+                    navmesh.speed = 3.0f;
+                }
+            }
         }
 
         //陰陽師のスキルが使われたとき
-        if (OnmyojiMoveScript.OnmyoFlag == true)
+        if (OnmyojiButton.OnmyojiFlag == true)
         {
-            Debug.Log("動き封じ");
-            OnmyoskillParticle.Play();
-            SetState(EnemyState.Wait);
+            if (OnmyojiMoveScript.OnmyoFlag == true)
+            {
+                Debug.Log("動き封じ");
+                OnmyoskillParticle.Play();
+                SetState(EnemyState.Wait);
+
+                if (OnmyojiMoveScript.OnmyoFlag == false)
+                {
+                    OnmyoskillParticle.Stop();
+                    SetState(EnemyState.Walk);
+                }
+            }
         }
-        else if (OnmyojiMoveScript.OnmyoFlag == false)
-        {
-            OnmyoskillParticle.Stop();
-            SetState(EnemyState.Walk);
-        }
+   
 
         //見回りまたはキャラクターを追いかける状態
         if (state == EnemyState.Walk || state == EnemyState.Chase)
@@ -153,16 +159,14 @@ public class NavMeshEnemyMove : MonoBehaviour
                     animator.SetFloat("Speed", 0f);
                 }
             }
-            //else if (state == EnemyState.Chase)
-            //{
-            //    //Debug.Log(navmesh.remainingDistance);
-            //    ////攻撃する距離だったら攻撃
-            //    //if (navmesh.remainingDistance < 2.5f)
-            //    //{
-            //    //    state = EnemyState.Attack;
-            //    //    SetState(EnemyState.Attack);
-            //    //}
-            //}
+            else if (state == EnemyState.Chase)
+            {
+                //攻撃する距離だったら攻撃
+                if (navmesh.remainingDistance < 2.5f)
+                {
+                    SetState(EnemyState.Attack);
+                }
+            }
         } //到着していたら一定時間待つ
         else if (state == EnemyState.Wait)
         {
@@ -211,7 +215,6 @@ public class NavMeshEnemyMove : MonoBehaviour
     {
         state = tempState;
         velocity = Vector3.zero;
-
         if (tempState == EnemyState.Walk)
         {
             arrived = false;
@@ -222,51 +225,53 @@ public class NavMeshEnemyMove : MonoBehaviour
         }
         else if (tempState == EnemyState.Chase)
         {
+            Debug.Log("Chase" + state);
             //待機状態から追いかける場合もあるのでOffにする
             arrived = false;
             //追いかける対象をセット
             playerTransform = targetObj;
             navmesh.SetDestination(playerTransform.position);
             navmesh.isStopped = false;
-            Debug.Log(navmesh.remainingDistance);
-            //攻撃する距離だったら攻撃
-            if (navmesh.remainingDistance < 3.5f)
-            {
-                state = EnemyState.Attack;
-                SetState(EnemyState.Attack);
-            }
         }
         else if (tempState == EnemyState.Wait)
         {
+            Debug.Log("Wait" + state);
             elapsedTime = 0f;
             arrived = true;
+            velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
         }
         else if (tempState == EnemyState.Attack)
         {
+            Debug.Log("Attack" + state);
+            velocity = Vector3.zero;
             audioSource.PlayOneShot(AttackSe);
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", true);
             navmesh.isStopped = true;
-            state = EnemyState.Freeze;
         }
         else if (tempState == EnemyState.Freeze)
         {
-            Debug.Log("SetState"+state);
+            Debug.Log("Freez" + state);
             elapsedTime = 0f;
+            velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", false);
         }
         else if (tempState == EnemyState.Damage)
         {
+            Debug.Log("Damage" + state);
             Debug.Log("グワァァァー");
+            velocity = Vector3.zero;
             animator.ResetTrigger("Attack");
             animator.SetTrigger("Damage");
             SetState(EnemyState.DamageWait);
         }
         else if (tempState == EnemyState.DamageWait)
         {
+            Debug.Log("DamageWait" + state);
             Debug.Log("苦しみ中");
+            velocity = Vector3.zero;
             second = 0f;
             animator.SetFloat("Speed", 0f);
             navmesh.isStopped = true;
