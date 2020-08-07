@@ -60,6 +60,7 @@ public class SamuraiMoveScript : MonoBehaviour
     private bool KeyFlag = false;
     //攻撃できる回数
     private int AttackNum;
+    private int ItemSkillNum;
     //スキルフラグ
     private bool SkillFlag = false;
     //Audio
@@ -102,6 +103,8 @@ public class SamuraiMoveScript : MonoBehaviour
         KeyFlag = false;
         //攻撃できる回数の初期化
         AttackNum = 0;
+        //アイテムスキル使用可能回数
+        ItemSkillNum = 3;
         //攻撃スキルフラグ
         SkillFlag = false;
         //防御スキルフラグ
@@ -203,12 +206,12 @@ public class SamuraiMoveScript : MonoBehaviour
                     //ゲームパッドのYボタンを押したとき
                     if(Input.GetButtonDown("SamuraiItem"))
                     {
-                        if (AttackNum < num)
+                        if (AttackNum < ItemSkillNum)
                         {
                             audioSource.PlayOneShot(SkillSe);
                             SetState(SamuraiState.Attack);
                         }
-                        else if (AttackNum >= num)
+                        else if (AttackNum >= ItemSkillNum)
                         {
                             SkillDeadImage.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                             katana.SetKatanaFlag(false);

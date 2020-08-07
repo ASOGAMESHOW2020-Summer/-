@@ -81,11 +81,76 @@ public class Torii : MonoBehaviour
 
     void GameClear()
     {
-        if((Player1Escape == true)&&(Player2Escape == true)
-        && (Player3Escape == true)&&(Player4Escape == true))
+        //シングルプレイのとき
+        if (SinglePlay.SingleFlag == true)
         {
-            Debug.Log("GameClear");
-            SceneManager.LoadScene("Clear");
+            if ((Player1Escape == true) || (Player2Escape == true)
+            && (Player3Escape == true) || (Player4Escape == true))
+            {
+                Debug.Log("GameClear");
+                SceneManager.LoadScene("Clear");
+            }
+        }
+
+        //二人プレイのとき
+        else if(TwoPlay.TwoFlag == true)
+        {
+            if((Player1Escape == true) && (Player2Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if((Player1Escape == true) && (Player3Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if((Player1Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if((Player2Escape == true) && (Player3Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if((Player2Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if((Player3Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+        }
+
+        //3人プレイのとき
+        else if(ThreePlay.ThreeFlag == true)
+        {
+            if((Player1Escape == true)&&(Player2Escape == true)&&(Player3Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if ((Player1Escape == true) && (Player2Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if ((Player1Escape == true) && (Player3Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            else if ((Player2Escape == true) && (Player3Escape == true) && (Player4Escape == true))
+            {
+                SceneManager.LoadScene("Clear");
+            }
+        }
+
+        //四人プレイのとき
+        else if(FourPlay.FourFlag == true)
+        {
+            if ((Player1Escape == true) && (Player2Escape == true)
+             && (Player3Escape == true) && (Player4Escape == true))
+            {
+                Debug.Log("GameClear");
+                SceneManager.LoadScene("Clear");
+            }
         }
     }
 

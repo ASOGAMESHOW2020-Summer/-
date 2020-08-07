@@ -62,6 +62,8 @@ public class MonkMoveScript : MonoBehaviour
     private float second = 0f;
     //スキル使用回数
     private int SkillNum = 0;
+    //アイテムスキル使用回数
+    private int ItemSkillNum = 0;
     //エフェクトオブジェクト
     [SerializeField]
     private GameObject skillEffect;
@@ -108,6 +110,7 @@ public class MonkMoveScript : MonoBehaviour
         second = 0f;
         //スキル回数の初期化
         SkillNum = 0;
+        ItemSkillNum = 0;
         skillParticle.Stop();
         //死亡フラグ初期化
         monkDeadFlag = false;
@@ -215,17 +218,17 @@ public class MonkMoveScript : MonoBehaviour
                     //ゲームパッドのYボタンを押したとき
                     if (Input.GetButtonDown("MonkItem"))
                     {
-                        if ((SkillNum < 1) && (hp < 3))
+                        if ((ItemSkillNum < 1) && (hp < 3))
                         {
                             audioSource.PlayOneShot(RecoverSkillSe);
                             second = 0;
                             Debug.Log("回復");
-                            SkillNum++;
+                            ItemSkillNum++;
                             hp++;
                             lifeGauge.SetLifeGauge(hp);
                             skillParticle.Play();
                         }
-                        else if (SkillNum > 1)
+                        else if (ItemSkillNum > 1)
                         {
                             SkillDeadImage.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                         }

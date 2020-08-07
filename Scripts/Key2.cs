@@ -26,11 +26,11 @@ public class Key2 : MonoBehaviour
     void Start()
     {
         GetKey = false;
-        var x = Random.Range(Xmin, Xmax);
-        var y = Random.Range(Ymin, Ymax);
-        var z = Random.Range(Zmin, Zmax);
-        randomPosition = new Vector3(x, y, z);
-        transform.position = randomPosition;
+        ////var x = Random.Range(Xmin, Xmax);
+        ////var y = Random.Range(Ymin, Ymax);
+        ////var z = Random.Range(Zmin, Zmax);
+        ////randomPosition = new Vector3(x, y, z);
+        ////transform.position = randomPosition;
         audioSource = GetComponent<AudioSource>();
     }
 

@@ -21,12 +21,13 @@ public class AttackEnemy : MonoBehaviour
                     Debug.Log("防御");
                     SamuraiMoveScript.YoroiFlag = false;
                 }
-                Debug.Log("侍当たり");
-                coll.GetComponent<SamuraiMoveScript>().LifeDamage(1);
-                coll.GetComponent<SamuraiMoveScript>().Damage(transform.root, coll.ClosestPoint(transform.position));
+                else
+                {
+                    Debug.Log("侍当たり");
+                    coll.GetComponent<SamuraiMoveScript>().LifeDamage(1);
+                    coll.GetComponent<SamuraiMoveScript>().Damage(transform.root, coll.ClosestPoint(transform.position));
+                }
             }
-            Debug.Log("silyuurilyou");
-
         }
         else if (coll.tag == "Monk")
         {

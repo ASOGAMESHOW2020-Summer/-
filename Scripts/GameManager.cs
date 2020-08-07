@@ -68,6 +68,80 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Failed");
             
         }
+
+        //シングルプレイのとき
+        if (SinglePlay.SingleFlag == true)
+        {
+            if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead) 
+            ||  (MonkState == MonkMoveScript.MonkState.Dead)
+            ||  (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead)
+            ||  (ThiefState == ThiefMoveScript.ThiefState.Dead))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+        }
+
+        //二人プレイのとき
+        else if (TwoPlay.TwoFlag == true)
+        {
+            if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (MonkState == MonkMoveScript.MonkState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((MonkState == MonkMoveScript.MonkState.Dead == true) && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((MonkState == MonkMoveScript.MonkState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+        }
+
+        //3人プレイのとき
+        else if (ThreePlay.ThreeFlag == true)
+        {
+            if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (MonkState == MonkMoveScript.MonkState.Dead == true) && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (MonkState == MonkMoveScript.MonkState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead == true) && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+            else if ((MonkState == MonkMoveScript.MonkState.Dead == true) && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead == true) && (ThiefState == ThiefMoveScript.ThiefState.Dead == true))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+        }
+
+        //四人プレイのとき
+        else if (FourPlay.FourFlag == true)
+        {
+            if ((SamuraiState == SamuraiMoveScript.SamuraiState.Dead)
+            && (MonkState == MonkMoveScript.MonkState.Dead)
+            && (OnmyojiState == OnmyojiMoveScript.OnmyojiState.Dead)
+            && (ThiefState == ThiefMoveScript.ThiefState.Dead))
+            {
+                SceneManager.LoadScene("Failed");
+            }
+        }
     }
 
 }

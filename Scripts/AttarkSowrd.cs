@@ -10,7 +10,7 @@ public class AttarkSowrd : MonoBehaviour
         if(coll.tag == "Enemy")
         {
             Debug.Log("天網恢恢");
-            coll.GetComponent<EnemyMoveScript>().Damage(coll.ClosestPointOnBounds(transform.position));
+            coll.GetComponent<NavMeshEnemyMove>().Damage(coll.ClosestPointOnBounds(transform.position));
         }
     }
 }
