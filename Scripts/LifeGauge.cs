@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*プレイヤーのライフスクリプト*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class LifeGauge : MonoBehaviour
     [SerializeField]
     private GameObject lifeObj;
 
-    //　ライフゲージ全削除＆HP分作成
+    //　HP表示
     public void SetLifeGauge(int life)
     {
         //　体力を一旦全削除
@@ -22,4 +23,5 @@ public class LifeGauge : MonoBehaviour
             Instantiate<GameObject>(lifeObj, transform);
         }
     }
+
 }
