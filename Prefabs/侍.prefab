@@ -2637,14 +2637,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadImage: {fileID: 0}
-  SkillImage: {fileID: 0}
   SkillDeadImage: {fileID: 0}
   LifeImage: {fileID: 0}
   walkSpeed: 2
   runSpeed: 3
   jumpPower: 5
   dashJumpPower: 5.6
-  hp: 3
   lifeGauge: {fileID: 0}
   damageEffect: {fileID: 2068050917807226448, guid: b6dfc6cb40b2a774686b23f2694cb5d0,
     type: 3}

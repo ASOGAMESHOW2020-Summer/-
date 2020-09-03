@@ -41,6 +41,7 @@ public class Key : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<SamuraiMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if(coll.tag == "Monk")
         {
@@ -48,6 +49,7 @@ public class Key : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<MonkMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if(coll.tag == "Onmyoji")
         {
@@ -55,6 +57,7 @@ public class Key : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<OnmyojiMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if(coll.tag == "Thief")
         {
@@ -62,6 +65,7 @@ public class Key : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<ThiefMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
     }
 

@@ -10,7 +10,7 @@ public class Key3 : MonoBehaviour
     [SerializeField]
     private AudioClip KeyGet;
     AudioSource audioSource;
-
+    private Vector3 randomPosition;
     [Header("入力した値の間のランダム値をX座標にする")]
     [SerializeField]
     float Xmin, Xmax;
@@ -21,7 +21,6 @@ public class Key3 : MonoBehaviour
     [SerializeField]
     float Zmin, Zmax;
     private bool GetKey = false;
-    private Vector3 randomPosition;
     void Start()
     {
         GetKey = false;
@@ -41,12 +40,15 @@ public class Key3 : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<SamuraiMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if (coll.tag == "Monk")
         {
+            audioSource.PlayOneShot(KeyGet);
             Destroy(gameObject);
             coll.GetComponent<MonkMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if (coll.tag == "Onmyoji")
         {
@@ -54,6 +56,7 @@ public class Key3 : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<OnmyojiMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
         else if (coll.tag == "Thief")
         {
@@ -61,6 +64,7 @@ public class Key3 : MonoBehaviour
             Destroy(gameObject);
             coll.GetComponent<ThiefMoveScript>().SetKeyFlag(true);
             GetKey = true;
+            GameManager.keynum++;
         }
     }
 

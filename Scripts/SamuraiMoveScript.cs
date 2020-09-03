@@ -161,7 +161,12 @@ public class SamuraiMoveScript : MonoBehaviour
             deadImage.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             SkillDeadImage.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SetState(SamuraiState.Normal);
+        }
+
         //侍の状態がノーマル状態の時
         if (state == SamuraiState.Normal)
         {
@@ -170,7 +175,7 @@ public class SamuraiMoveScript : MonoBehaviour
             {
                 DeadButton();
             }
-
+           
             if (characterController.isGrounded)//キャラクターが接地しているかどうか
             {
 

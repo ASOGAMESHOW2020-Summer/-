@@ -106,11 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyGet: {fileID: 8300000, guid: 53310dcc3aa21894381f15e9a56254fc, type: 3}
   Xmin: 30
-  Xmax: 550
+  Xmax: 300
   Ymin: 1.2
   Ymax: 1.5
   Zmin: 45
-  Zmax: 960
+  Zmax: 500
 --- !u!82 &7466053785320770432
 AudioSource:
   m_ObjectHideFlags: 0

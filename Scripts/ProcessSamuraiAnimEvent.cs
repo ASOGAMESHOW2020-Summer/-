@@ -20,6 +20,11 @@ public class ProcessSamuraiAnimEvent : MonoBehaviour
         capsulecollider.enabled = true;
     }
 
+    void RunAttackEnd()
+    {
+        capsulecollider.enabled = false;
+        samurai.SetState(SamuraiMoveScript.SamuraiState.Normal);
+    }
     void AttackEnd()
     {
         capsulecollider.enabled = false;

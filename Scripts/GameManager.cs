@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     private GameObject Thief;
     [SerializeField]
     private ThiefMoveScript ThiefScript;
+    [SerializeField]
+    private Text text;
+    public static int keynum = 0;
 
     SamuraiMoveScript.SamuraiState SamuraiState;
     MonkMoveScript.MonkState MonkState;
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour
         OnmyojiScript = Onmyoji.GetComponent<OnmyojiMoveScript>();
         Thief = GameObject.Find("盗賊");
         ThiefScript = Thief.GetComponent<ThiefMoveScript>();
+        text.GetComponent<Text>();
+        keynum = 0;
     }
 
     void Update()
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
         //プレイヤー（盗賊）の状態を取得
         ThiefState = ThiefScript.GetState();
         GameOver();
+        text.text = "×" + keynum;
     }
 
     void GameOver()

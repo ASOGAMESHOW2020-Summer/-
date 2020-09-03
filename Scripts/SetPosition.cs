@@ -22,12 +22,12 @@ public class SetPosition : MonoBehaviour
     public void CreateRandomPosition()
     {
         //ランダムなVectorの値を得る
-        var randDestination = Random.insideUnitCircle * 500;
-        //現在位置にランダムな位置を足して目的地とする
-        SetDestination(startPosition + new Vector3(randDestination.x, 0, randDestination.y));
-        //var randDestinationX = Random.Range(20.0f, 987.0f);
-        //var randDestinationZ = Random.Range(18.0f, 986.0f);
-        //SetDestination(startPosition + new Vector3(randDestinationX, 0, randDestinationZ));
+        //var randDestination = Random.insideUnitCircle * 500;
+        ////現在位置にランダムな位置を足して目的地とする
+        //SetDestination(startPosition + new Vector3(randDestination.x, 0, randDestination.y));
+        var randDestinationX = Random.Range(75.0f, 315.0f);
+        var randDestinationZ = Random.Range(30.0f, 540.0f);
+        SetDestination(startPosition + new Vector3(randDestinationX, 0, randDestinationZ));
     }
 
     //目的地を設定する

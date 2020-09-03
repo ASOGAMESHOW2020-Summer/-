@@ -435,12 +435,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillImage: {fileID: 0}
-  Xmin: 27
-  Xmax: 589
+  Xmin: 55
+  Xmax: 350
   Ymin: 0
   Ymax: 0.2
-  Zmin: 18
-  Zmax: 960
+  Zmin: 100
+  Zmax: 515
 --- !u!1 &7528568622581380193
 GameObject:
   m_ObjectHideFlags: 0

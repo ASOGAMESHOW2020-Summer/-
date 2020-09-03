@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillImage: {fileID: 0}
-  Xmin: 20
-  Xmax: 590
+  Xmin: 70
+  Xmax: 300
   Ymin: 0.3
   Ymax: 0.4
-  Zmin: 75
-  Zmax: 986
+  Zmin: 40
+  Zmax: 550
 --- !u!65 &3055933612973533312
 BoxCollider:
   m_ObjectHideFlags: 0
